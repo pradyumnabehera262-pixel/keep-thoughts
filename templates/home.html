@@ -26,12 +26,31 @@
             </button>
         </section>
         <section id="action" class="actions">
-            <button id="addThoughtBtn" class="add-thought-button">
-                <span class="add-icon">+</span>
-                <span class="add-text">Add Thought</span>
-            </button>
+            <div class="action-tools">
+                <button id="addThoughtBtn" class="add-thought-button">
+                    <span class="add-icon">+</span>
+                    <span class="add-text">Add Thought</span>
+                </button>
+            </div>
+            <div class="write-section">
+                <input type="text" placeholder="Title" id="titleInput" class="title-input">
+                <hr>
+                <textarea placeholder="Write your thought here..." id="contentInput" class="content-input"></textarea>
+                <button id="clrBtn" class="clr-btn">Clear</button>
+                <button id="saveThoughtBtn" class="save-thought-button">Save Thought</button>
+            </div>
         </section>
     </main>
+    <div id="clearPopup" class="confirm-overlay">
+        <div id="popupBox" class="confirm-box">
+            <h2>Clear Thoughts?</h2>
+            <p>Are you sure you want to clear the thoughts?</p>
+            <div class="confirm-actions">
+                <button id="cancelBtn" class="cancel-btn">Cancel</button>
+                <button id="confirmClear" class="confirm-clear">Clear</button>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="/static/js/scripts.js"></script>
 

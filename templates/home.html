@@ -20,6 +20,10 @@
                     <li>Press the Add Thought button below to add your first thought.</li>
                 </ul>
             </div>
+            <div class="loaded-list">
+                <h2>My Thoughts</h2>
+                <hr>
+            </div>
             <button id="backBtn" class="back-btn">
                 <span class="back-icon">←</span>
                 <span class="back-text">Back</span>
@@ -49,6 +53,19 @@
                 <button id="cancelBtn" class="cancel-btn">Cancel</button>
                 <button id="confirmClear" class="confirm-clear">Clear</button>
             </div>
+        </div>
+    </div>
+
+    <div id="savePopup" class="save-popup">
+        <div class="save-popup-box">
+            <p>Thought Saved.</p>
+        </div>
+    </div>
+
+    <div id="emptyContent" class="no-content">
+        <div class="no-content-popup" id="noContentBox">
+            <p> Title/Contents can't be empty.</p>
+            <button id="emptyContentBoxButton">Ok</button>
         </div>
     </div>
 </body>

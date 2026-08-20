@@ -12,14 +12,26 @@ const saveThoughtBtn = document.getElementById("saveThoughtBtn");
 const savePopup = document.getElementById("savePopup");
 const emptyContentPopup = document.getElementById("emptyContent");
 const loadedList = document.querySelector(".loaded-list");
+const thoughtCards = document.querySelector(".thought-cards");
 const emptyList = document.querySelector(".empty-list");
+
+
+let thoughts = [];
 
 button.addEventListener("click", function () {
     main.classList.add("expanding");
+    loadedList.classList.add("hide");
 });
 
 backBtn.addEventListener("click", function (){
     main.classList.remove("expanding");
+    if (thoughts.length === 0) {
+            loadedList.classList.add("hide");
+            emptyList.classList.remove("hide");
+        } else {
+            emptyList.classList.add("hide");
+            loadedList.classList.remove("hide");
+        };
 });
 
 clearButton.addEventListener("click", function (){
@@ -45,7 +57,7 @@ confirmClear.addEventListener("click", function (){
 });
 
 saveThoughtBtn.addEventListener("click", function (){
-    if (titleInput.value != ("") & contentInput.value != ("")){
+    if (titleInput.value.trim() !== ("") && contentInput.value.trim() !== ("")){
         fetch("/save", {
             method: "POST",
             headers: {
@@ -91,11 +103,11 @@ saveThoughtBtn.addEventListener("click", function (){
     };
 });
 
-
 function loadThoughts(){
-    fetch('/thoughts').then(response => response.json()).then(thoughts => {
+    fetch('/thoughts').then(response => response.json()).then(data => {
         
-        loadedList.innerHTML = "";
+        thoughts = data;
+        thoughtCards.innerHTML = "";
 
         thoughts.forEach(thought => {
             const card = document.createElement("div");
@@ -110,21 +122,15 @@ function loadThoughts(){
             card.appendChild(contentTitle);
             card.appendChild(content);
 
-            loadedList.appendChild(card);
+            thoughtCards.appendChild(card);
         });
         if (thoughts.length === 0) {
             loadedList.classList.add("hide");
             
         } else {
             emptyList.classList.add("hide");
-            button.addEventListener("click", function () {
-                loadedList.classList.add("hide");
-            });
-
-            backBtn.addEventListener("click", function (){
-                loadedList.classList.remove("hide");
-            });
         };
     });
 }
 loadThoughts(); 
+
